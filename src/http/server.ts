@@ -25,6 +25,25 @@ app.get("/game/resumo", (req: Request, res: Response) => {
   });
 });
 
+app.get("/game/relatorio/:id", (req: Request, res: Response) => {
+  let gerador = new GeradorRelatorio();
 
+  executeAction(filePath, gerador);
+
+  const rl = readline.createInterface({
+    input: fs.createReadStream(filePath),
+    crlfDelay: Infinity,
+  });
+
+  rl.on("close", () => {
+    if (req.params.id && gerador.jogos[req.params.id]) {
+      res.json(gerador.jogos[req.params.id]);
+    } else {
+      res
+        .status(404)
+        .json({ [req.params.id ?? "result"]: "Jogo não encontrado" });
+    }
+  });
+});
 
 app.listen(port, () => console.log(`Servidor iniciado na porta ${port}`));
