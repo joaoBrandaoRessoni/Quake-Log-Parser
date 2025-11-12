@@ -46,4 +46,19 @@ app.get("/game/relatorio/:id", (req: Request, res: Response) => {
   });
 });
 
+app.get("/game/ids", (req: Request, res: Response) => {
+  let gerador = new ParserGenerator();
+
+  executeAction(filePath, gerador);
+
+  const rl = readline.createInterface({
+    input: fs.createReadStream(filePath),
+    crlfDelay: Infinity,
+  });
+
+  rl.on("close", () => {
+    res.json(Object.keys(gerador.jogos));
+  });
+});
+
 app.listen(port, () => console.log(`Servidor iniciado na porta ${port}`));
