@@ -77,7 +77,7 @@ Ela retorna uma lista de todos os jogos disponíveis no log
 ### Buscar os resumos (parser da Task 1) por ID de jogo
 Ela faz basicamente o que a rota anterior faz, porém ela retorna apenas o resumo do jogo desejado
 ```
-  127.0.0.1:8000/game/resumo/game_2
+  127.0.0.1:8000/game/resumo/:id
 ```
 Resultado:
 ```
@@ -99,7 +99,7 @@ Resultado:
 ### Buscar os relatórios por ID de jogo (Task 2 e 3)
 Esta rota é o resultado da Task 2, como solicitado na Task 3, uma rota de API foi criada para consultar os relatórios por jogo
 ```
-  127.0.0.1:8000/game/relatorio/game_2
+  127.0.0.1:8000/game/relatorio/:id
 ```
 Resultado:
 ```
