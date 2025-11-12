@@ -19,8 +19,8 @@ Após ter o projeto baixado na sua máquina, rode o comando ``npm install`` isto
 Para facilitar os testes de API, tenha o Postman instalado na máquina, o arquivo ``Quake_API.postman_collection.json`` é o export de uma collection com rotas de teste para facilitar
 
 # Rotas criadas
-Foram criadas algumas rotas, apesar do teste pedir apenas a rota GET do relatório, pensando em facilitar o teste e a visualização do resultado, foram criadas mais três rotas.
-Obs: No arquivo do Postman disponibilizado neste projeto, duas rotas foram criadas para testar caso um ID inexistente fosse requisitado (BuscarResumoInexistente, BuscarRelatorioInexistente)
+Foram criadas algumas rotas, apesar do teste pedir apenas a rota GET do relatório, pensando em facilitar o teste e a visualização do resultado, foram criadas mais três rotas.  
+**Obs:** No arquivo do Postman disponibilizado neste projeto, duas rotas foram criadas para testar caso um ID inexistente fosse requisitado (BuscarResumoInexistente, BuscarRelatorioInexistente)
 
 ### IDs de jogos disponíveis
 O intuito desta rota é facilitar o teste das rotas que pedem um id de jogo como parâmetro.
