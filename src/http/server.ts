@@ -10,32 +10,24 @@ const port = 8000;
 
 const filePath = "log/games.log";
 
-app.get("/game/resumo", (req: Request, res: Response) => {
-  let gerador = new ParserGenerator();
+app.get("/game/resumo", async (req: Request, res: Response) => {
+  try {
+    let gerador = new ParserGenerator();
 
-  executeAction(filePath, gerador);
+    await executeAction(filePath, gerador);
 
-  const rl = readline.createInterface({
-    input: fs.createReadStream(filePath),
-    crlfDelay: Infinity,
-  });
-
-  rl.on("close", () => {
     res.json(gerador.jogos);
-  });
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao processar arquivo" });
+  }
 });
 
-app.get("/game/resumo/:id", (req: Request, res: Response) => {
-  let gerador = new ParserGenerator();
+app.get("/game/resumo/:id", async (req: Request, res: Response) => {
+  try {
+    let gerador = new ParserGenerator();
 
-  executeAction(filePath, gerador);
+    await executeAction(filePath, gerador);
 
-  const rl = readline.createInterface({
-    input: fs.createReadStream(filePath),
-    crlfDelay: Infinity,
-  });
-
-  rl.on("close", () => {
     if (req.params.id && gerador.jogos[req.params.id]) {
       res.json(gerador.jogos[req.params.id]);
     } else {
@@ -43,20 +35,17 @@ app.get("/game/resumo/:id", (req: Request, res: Response) => {
         .status(404)
         .json({ [req.params.id ?? "result"]: "Jogo não encontrado" });
     }
-  });
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao processar arquivo" });
+  }
 });
 
-app.get("/game/relatorio/:id", (req: Request, res: Response) => {
-  let gerador = new GeradorRelatorio();
+app.get("/game/relatorio/:id", async (req: Request, res: Response) => {
+  try {
+    let gerador = new GeradorRelatorio();
 
-  executeAction(filePath, gerador);
+    await executeAction(filePath, gerador);
 
-  const rl = readline.createInterface({
-    input: fs.createReadStream(filePath),
-    crlfDelay: Infinity,
-  });
-
-  rl.on("close", () => {
     if (req.params.id && gerador.jogos[req.params.id]) {
       res.json(gerador.jogos[req.params.id]);
     } else {
@@ -64,22 +53,21 @@ app.get("/game/relatorio/:id", (req: Request, res: Response) => {
         .status(404)
         .json({ [req.params.id ?? "result"]: "Jogo não encontrado" });
     }
-  });
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao processar arquivo" });
+  }
 });
 
-app.get("/game/ids", (req: Request, res: Response) => {
-  let gerador = new ParserGenerator();
+app.get("/game/ids", async (req: Request, res: Response) => {
+  try {
+    let gerador = new ParserGenerator();
 
-  executeAction(filePath, gerador);
+    await executeAction(filePath, gerador);
 
-  const rl = readline.createInterface({
-    input: fs.createReadStream(filePath),
-    crlfDelay: Infinity,
-  });
-
-  rl.on("close", () => {
     res.json(Object.keys(gerador.jogos));
-  });
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao processar arquivo" });
+  }
 });
 
 app.listen(port, () => console.log(`Servidor iniciado na porta ${port}`));
