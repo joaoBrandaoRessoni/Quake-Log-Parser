@@ -1,5 +1,5 @@
 # Quake-Log-Parser
-Desafio de criação um parser de log
+Desafio de criar um parser de log
 
 # Solução Proposta
 A solução foi desenvolvida em NodeJs e Typescript com o framework Express para criar as rotas da API.
