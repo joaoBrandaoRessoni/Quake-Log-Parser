@@ -1,14 +1,15 @@
 import express, { Request, Response } from "express";
-import * as fs from "fs";
-import * as readline from "readline";
 import GeradorRelatorio from "../classes/GeradorRelatorio.js";
 import executeAction from "../executeAction.js";
 import ParserGenerator from "../classes/ParserGenerator.js";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT;
 
-const filePath = "log/games.log";
+const filePath = process.env.FILEPATH ?? "";
 
 app.get("/game/resumo", async (req: Request, res: Response) => {
   try {
